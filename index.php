@@ -61,6 +61,10 @@ $siteurl = siteURL();
   <label for="text">Text
     <input type="text" name="text" id="text" value="" size="30">
   </label>
+    <span class="ampersand seperator">&amp;</span>
+  <label for="text">Time offset
+    <input type="text" name="offset" id="text" value="" size="30">
+  </label>
 </form>
 <h3 id="documentation">Documentation</h3>
 <h4 id="size">Size</h4>
@@ -353,54 +357,7 @@ $siteurl = siteURL();
   <li>Images are served with a specified <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13" class="example">Content-Length</a> so they can be used in preloaders</li>
   <li>Dummyimage.com uses a <a href="<?php echo $siteurl; ?>/crossdomain.xml" class="example">crossdomain.xml</a> file</li>
 </ul>
-<h3 id="download">Download the source code</h3>
-<h4><a href="/source.zip">source.zip</a></h4>
-<p id="license">Dummy Image is written in PHP and distributed freely under a <a rel="license" href="http://creativecommons.org/licenses/MIT/">MIT License</a>.</p>
-<h4 id="other-downloads">Other Versions</h4>
-<dl>
-  <dt><a href="http://github.com/xxx/fakeimage" target="_blank">Fakeimage</a></dt>
-  <dd class="language">Ruby</dd>
-  <dd class="author">Michael Dungan</dd>
-  <dt><a href="http://code.google.com/p/aspnet-dummyimage/" target="_blank">ASP.net Dummy Image</a></dt>
-  <dd class="language">ASP.net</dd>
-  <dd class="author">Jess Tedder</dd>
-  <dt><a href="https://github.com/darkrho/django-dummyimage" target="_blank">Dynamic Dummy Image Generator for Django</a></dt>
-  <dd class="language">Django/Python</dd>
-  <dd class="author">Rolando Espinoza La fuente</dd>
-  <dt><a href="http://rndimg.com" target="_blank">Random Image Generator</a></dt>
-  <dd class="author">Johan Thomsen</dd>
-  <dt><a href="http://expressionengine.com/forums/viewthread/145773/" target="_blank">Dummy Image Generator Expression Engine Plugin</a></dt>
-  <dd class="language">PHP/Expression Engine</dd>
-  <dd class="author">tsiger</dd>
-  <dt><a href="http://www.robertgomez.org/blog/2010/03/03/dummy-image-bookmarklet" target="_blank">Dummy Image Bookmarklet</a></dt>
-  <dd class="language">JavaScript</dd>
-  <dd class="author">Robert Gomez</dd>
-  <dt><a href="http://ipsumimage.appspot.com/" target="_blank">Ipsum Image</a></dt>
-  <dd class="language">Python/Google App Engine</dd>
-  <dd class="author">Dan Moore</dd>
-  <dt><a href="http://tumble.dasmith.co.uk/post/519622101/textmate-snippet-for-inserting-dummy-images" target="_blank">Textmate Snippet</a></dt>
-  <dd class="language">Textmate</dd>
-  <dd class="author">Danny Smith</dd>
-  <dt><a href="http://github.com/kennethreitz/DummyImage.tmBundle" target="_blank">Forked Textmate Bundle</a> (<a href="http://github.com/AzizLight/DummyImage.tmBundle" target="_blank">Forked version</a> by Aziz Light)</dt>
-  <dd class="language">Textmate</dd>
-  <dd class="author">Kenneth Reitz</dd>
-  <dt><a href="http://github.com/derekahmedzai/dummyimages/" target="_blank">Dummyimages Drupal Module</a></dt>
-  <dd class="language">PHP/Drupal</dd>
-  <dd class="author">Derek Ahmedzai</dd>
-  <dt><a href="http://modxcms.com/extras/package/754" target="_blank">DIG (Dynamic Image Generator)</a></dt>
-  <dd class="language">PHP/MODx CMS</dd>
-  <dd class="author">Brian Wente</dd>
-  <dt><a href="http://drupal.org/project/dummyimage" target="_blank">Dummy image</a></dt>
-  <dd class="language">PHP/Drupal</dd>
-  <dd class="author">naxoc</dd>
-  <dt><a href="http://soderlind.no/archives/2010/11/17/lorem-shortcode/" target="_blank">[lorem] shortcode</a></dt>
-  <dd class="language">PHP/WordPress</dd>
-  <dd class="author">Per Soderlind</dd>
-</dl>
-<h3 id="about">About Russell Heimlich</h3>
-<p>I am <a href="http://www.russellheimlich.com/blog">Russell Heimlich</a> (<a href="http://twitter.com/kingkool68">@kingkool68</a>) and I like to <a href="http://www.pewresearch.org">design web pages</a>, <a href="http://www.russellheimlich.com/blog">blog</a>, and doodle around in <a href="http://www.russellheimlich.com/blog/tags/coding/">JavaScript and PHP</a>.</p>
-<h4 id="contact">Contact</h4>
-<p>Still have questions or suggestions? <a href="http://www.russellheimlich.com/contact.html">Contact me</a>.</p>
+
 <div id="supported-by">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -431,6 +388,9 @@ function updateDemo() {
 					text = text.replace(/\+/ig, "0x2B");
 					text = text.replace(/\s/ig, '+');
 					url += '&text=' + text;
+				break;
+				case 5:
+					url += '&offset=' + parseInt($(this).val(),10);
 				break;
 				default:
 					url += $(this).val();
