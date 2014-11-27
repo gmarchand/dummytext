@@ -125,6 +125,18 @@ else {
 	$text = $width."x".$height; //This is the default text string that will go right in the middle of the rectangle. &#215; is the multiplication sign, it is not an 'x'.
 }
 
+$offset = 60 * 60 * 24 * 14; //14 Days
+
+if ($_GET['offset']) {
+	$_GET['offset'] = intval($_GET['offset']);
+	if ($_GET['offset'] != 0) {
+		$offset = $_GET['offset'];
+		$texttime = date("d/m/Y H:i:s", time() - $offset);
+		$text .= ' ('.$texttime.')';
+		
+	}
+}
+
 //Ric Ewing: I modified this to behave better with long or narrow images and condensed the resize code to a single line. 
 //$fontsize = max(min($width/strlen($text), $height/strlen($text)),5); //scale the text size based on the smaller of width/8 or hieght/2 with a minimum size of 5.
 
@@ -144,7 +156,7 @@ imageFilledRectangle($img, 0, 0, $width, $height, $bg_color); //Creates the rect
 imagettftext($img, $fontsize, $text_angle, $textX, $textY, $fg_color, $font, $text);	 //Create and positions the text http://us2.php.net/manual/en/function.imagettftext.php
 
 
-$offset = 60 * 60 * 24 * 14; //14 Days
+
 $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 header($ExpStr); //Set a far future expire date. This keeps the image locally cached by the user for less hits to the server.
 header('Cache-Control:	max-age=120');
